@@ -1,5 +1,5 @@
 {
-  "name": "react-navigation-paper-modal-dialog",
+  "name": "react-navigation-modal-dialog",
   "version": "1.0.0",
   "description": "Dialog implemented as RN (5.0+) modal ",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "github.com/rhdeck/react-navigation-paper-modal-dialog"
+    "url": "github.com/rhdeck/react-navigation-modal-dialog"
   },
   "author": "Ray Deck",
   "license": "MIT"
