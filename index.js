@@ -15,7 +15,7 @@ const context = createContext({});
 const { Provider } = context;
 const ModalProvider = ({ children, ...props }) => {
   const [deferred, setDeferred] = useState(null);
-  const [component, setComponent] = useState(({ resolve }) => (
+  const [component, setComponent] = useState(() => ({ resolve }) => (
     <View>
       <Text>Oh noes!!!</Text>
       <Button onPress={() => resolve("hello")} title="Press me" />
@@ -36,6 +36,8 @@ const ModalProvider = ({ children, ...props }) => {
 const P = () => {
   const { goBack } = useNavigation();
   const { deferred, component: C, props } = useContext(context);
+  console.log("Drawing my p");
+  console.log("with a c of", C);
   return (
     <C
       resolve={(a, b, c) => {
@@ -47,14 +49,16 @@ const P = () => {
     />
   );
 };
-const useModalDialog = () => {
+const useShowDialog = () => {
   const navigation = useNavigation();
   const { setDeferred, setComponent } = useContext(context);
   const showDialog = useCallback(
     async ({ component }) => {
-      if (component) setComponent(component);
+      console.log("Setting component ", component);
+      if (component) setComponent(() => component);
       const deferred = new Deferred();
       setDeferred(deferred);
+      console.log("navigating to modal");
       navigation.navigate("_modal");
       return await deferred.promise;
     },
@@ -64,7 +68,7 @@ const useModalDialog = () => {
 };
 const useSetModalComponent = () => {
   const { setComponent } = useContext(context);
-  return setComponent;
+  return (c) => setComponent(() => c);
 };
 export default ModalProvider;
-export { useModalDialog, useSetModalComponent };
+export { useShowDialog, useSetModalComponent };
