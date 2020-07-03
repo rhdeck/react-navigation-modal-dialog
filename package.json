@@ -1,6 +1,6 @@
 {
   "name": "react-navigation-modal-dialog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Dialog implemented as RN (5.0+) modal ",
   "main": "index.js",
   "scripts": {
