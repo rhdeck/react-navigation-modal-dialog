@@ -44,7 +44,10 @@ const P = () => {
         goBack();
         deferred.resolve(a, b, c);
       }}
-      reject={deferred.reject}
+      reject={(reason) => {
+        goBack();
+        deferred.reject(reason);
+      }}
       {...props}
     />
   );
